@@ -1,0 +1,18 @@
+{% extends "base/base.html" %}
+{% block page_content %}
+
+    <div class="body">
+        <h1>Create Expense</h1>
+        <!-- Create Expense Form -->
+        <div class="form">
+            <form method="POST">
+                {{ form.as_p }}
+                <!-- Create Button -->
+                <input type="submit" value="Create">
+                {% csrf_token %}
+            </form>
+        </div>
+        <!-- End Create Expense Form -->
+    </div>
+
+{% endblock %}
