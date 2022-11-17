@@ -1,20 +1,21 @@
 from django import forms
-from django.contrib.auth import forms as auth_forms, login
+from django.contrib.auth import forms as auth_forms, login, get_user_model
 from django.contrib.auth import views as auth_views
-from django.contrib.auth.models import User
 from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
 
-
 # Create your views here.
 # bGT6jjauMFevy_f
+
+UserModel = get_user_model()
 
 
 class SignUpForm(auth_forms.UserCreationForm):
     class Meta:
-        model = User
-        fields = ('first_name', 'last_name', 'username')
+        model = UserModel
+        # fields = ('first_name', 'last_name', 'username')
+        fields = '__all__'
         field_classes = {'username': auth_forms.UsernameField}
 
     # auto defining username from first and last name
