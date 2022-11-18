@@ -1,0 +1,6 @@
+<h3> Number of profiles = {{ profiles_count }}</h3>
+<ul>
+    {% for profile  in profile_list %}
+        <li>{{ profile.name }}</li>
+    {% endfor %}
+</ul>
