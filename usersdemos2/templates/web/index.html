@@ -1,13 +1,13 @@
 <strong>Has email: {{ has_email }}</strong>
 <ul>
-    {% for user in user_list %}
+    {% for user in object_list %}
         <li>
             {% if user == request.user %}
                 <strong>
-                    {{ user.username }}
+                    {{ user.email }}
                 </strong>
             {% else %}
-                {{ user.username }}
+                {{ user.email }}
             {% endif %}
         </li>
 

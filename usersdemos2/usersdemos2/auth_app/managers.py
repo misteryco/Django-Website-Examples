@@ -2,7 +2,7 @@ from django.contrib.auth import base_user
 from django.contrib.auth.hashers import make_password
 
 
-class UserManager(base_user.BaseUserManager):
+class AppUserManager(base_user.BaseUserManager):
     use_in_migrations = True
 
     def _create_user(self, email, password, **extra_fields):

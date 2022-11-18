@@ -1,30 +1,19 @@
 from django import forms
-from django.contrib.auth import forms as auth_forms, login, get_user_model
+from django.contrib.auth import login
 from django.contrib.auth import views as auth_views
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic as views
+
+from usersdemos2.auth_app.forms import SignUpForm
+
+
+# from usersdemos2.auth_app.models import Profile
+
 
 # Create your views here.
 # bGT6jjauMFevy_f
 
-UserModel = get_user_model()
-
-
-class SignUpForm(auth_forms.UserCreationForm):
-    class Meta:
-        model = UserModel
-        # fields = ('first_name', 'last_name', 'username')
-        fields = '__all__'
-        field_classes = {'username': auth_forms.UsernameField}
-
-    # auto defining username from first and last name
-    def save(self, commit=True):
-        user = super().save(commit=commit)
-        user.username = user.first_name + '-' + user.last_name
-        if commit:
-            user.save()
-        return user
+# UserModel = get_user_model()
 
 
 class SignUpView(views.CreateView):
@@ -33,15 +22,17 @@ class SignUpView(views.CreateView):
 
     success_url = reverse_lazy('index')
 
+    # Signs the user in, after successful sign up
     def form_valid(self, form):
         result = super().form_valid(form)
+
         login(self.request, self.object)
         return result
 
 
-class SignInForm(forms.Form):
-    username = forms.CharField()
-    password = forms.CharField()
+# class SignInForm(forms.Form):
+#     username = forms.CharField()
+#     password = forms.CharField()
 
 
 class SignInView(auth_views.LoginView):

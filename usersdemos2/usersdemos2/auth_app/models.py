@@ -1,6 +1,8 @@
 from django.contrib.auth import models as auth_models
 from django.db import models
 
+from usersdemos2.auth_app.managers import AppUserManager
+
 
 # AUTH with Proxy
 #
@@ -24,19 +26,20 @@ class AppUser(auth_models.AbstractBaseUser, auth_models.PermissionsMixin):
         blank=False,
     )
 
-    date_joined = models.D
-    ateTimeField(
+    date_joined = models.DateTimeField(
         auto_now_add=True,
     )
 
-    # is_staff = models.BooleanField(
-    #     default=False,
-    #     null=False,
-    #     blank=False,
-    # )
+    is_staff = models.BooleanField(
+        default=False,
+        null=False,
+        blank=False,
+    )
 
     # User credentials consist of 'email' and 'password'
     USERNAME_FIELD = 'email'
+
+    object = AppUserManager()
 
 
 class Profile(models.Model):
